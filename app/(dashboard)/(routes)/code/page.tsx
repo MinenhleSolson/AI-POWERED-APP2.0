@@ -3,7 +3,7 @@
 import * as z from "zod";
 import axios from "axios"
 import { Heading } from "@/components/heading";
-import { MessageSquare } from "lucide-react";
+import { Code } from "lucide-react";
 import { useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod"
 import { formSchema } from "./constants";
@@ -16,10 +16,11 @@ import {ChatCompletionRequestMessage} from "openai"
 import { cn } from "@/lib/utils";
 import { UserAvatar } from "@/components/user-avatar";
 import { JarvisAvatar } from "@/components/jarvis-avatar";
-import { Empty } from "@/components/ui/empty";
+import ReactMarkdown from "react-markdown";
 import { Loader } from "@/components/ui/loader";
+import { Empty } from "@/components/ui/empty";
 
-function ConversationPage() {
+function CodePage() {
 
     const router = useRouter();
     const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([])
@@ -42,7 +43,7 @@ function ConversationPage() {
 
           const newMessage = [...messages, userMessage];
 
-          const response =await axios.post("/api/conversation", {
+          const response =await axios.post("/api/code", {
             messages: newMessage,
           })
 
@@ -60,9 +61,9 @@ function ConversationPage() {
   return (
     <div>
       <Heading 
-        title="Conversation"
-        description="Ask Away"
-        icon={MessageSquare}
+        title="Code Generation"
+        description="Ask Me <code> related Questions"
+        icon={Code}
         iconColor="text-[#ff5e00]"
         bgColor="bg-[#ff5e00]/10"
       />
@@ -94,7 +95,7 @@ function ConversationPage() {
                         className="border-0 outline-none focus-visible:ring-0 
                         focus-visible:ring-transparent"
                         disabled={isLoading}
-                        placeholder="What is the speed of light?"
+                        placeholder="Create a animated button using react hooks"
                         {...field}
                       />
                     </FormControl>
@@ -112,7 +113,8 @@ function ConversationPage() {
           </Form>
         </div>
         <div className="space-y-4 mt-4">
-          {isLoading && (
+           <div className="flex flex-col-reverse gap-y-4">
+           {isLoading && (
             <div className="p-8 rounded-lg w-full flex items-center 
              justify-center bg-muted">
               <Loader />
@@ -121,7 +123,6 @@ function ConversationPage() {
           {messages.length === 0 && !isLoading && (
             <Empty label="No conversation started" />
           )}
-           <div className="flex flex-col-reverse gap-y-4">
             {messages.map((message) =>(
               <div 
               key={message.content}
@@ -130,9 +131,22 @@ function ConversationPage() {
               )}
               >
                 {message.role === "user" ? <UserAvatar /> : <JarvisAvatar />}
-                <p className="text-sm">
-                {message.content}
-                </p>
+                
+               <ReactMarkdown 
+                components={{
+                  pre: ({node, ...props}) => (
+                    <div className="overflow-auto w-full my-2 bg-black/10 p-2 rounded-lg">
+                      <pre {...props}/>
+                    </div>
+                  ),
+                  code: ({node, ...props}) => (
+                    <code className="bg-black/10 rounded-lg p-1" {...props} />
+                  )
+                }}
+                className="text-sm overflow-hidden leading-7"
+               >
+                {message.content || ""}
+               </ReactMarkdown>
               </div>
             ))}
 
@@ -143,4 +157,4 @@ function ConversationPage() {
   )
 }
 
-export default ConversationPage
+export default CodePage
