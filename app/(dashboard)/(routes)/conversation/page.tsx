@@ -102,8 +102,8 @@ function ConversationPage() {
                 )}
               />
               <Button className="col-span-12 lg:col-span-2
-               bg-[#006587]
-               hover:bg-[#006587] w-full"
+               bg-[#111827]
+               hover:bg-[#111827] w-full"
                disabled={isLoading}
                >
                 Generate

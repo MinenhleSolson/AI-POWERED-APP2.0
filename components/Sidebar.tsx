@@ -42,18 +42,8 @@ function Sidebar() {
             href: "/image",
             color: "text-[#FF5E00]",
         },
-        {
-            label: "Video Generation",
-            icon: VideoIcon, 
-            href: "/video",
-            color: "text-[#FF5E00]",
-        },
-        {
-            label: "Music Generation",
-            icon: Music, 
-            href: "/music",
-            color: "text-[#FF5E00]",
-        },
+       
+  
 
         {
             label: "Code Generation",
@@ -61,17 +51,12 @@ function Sidebar() {
             href: "/code",
             color: "text-[#FF5E00]",
         },
-        {
-            label: "Settings",
-            icon: Settings, 
-            href: "/settings",
-            color: "text-[#FF5E00]",
-        },
+     
     ]
 
   return (
     <div className="space-y-4 py-4 flex flex-col h-full
-    bg-[#006587] text-white">
+    bg-[#111827] text-white">
         <div className="px-3 py-2 flex-1">
             <Link href="/dashboard" className="flex items-center pl-3 mb-14">
                 <div className="relative w-9 h-9 mr-4">

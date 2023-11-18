@@ -100,7 +100,7 @@ function ImagePage() {
                 )}
               />
               <FormField 
-                controle={form.control}
+                control={form.control}
                 name="amount"
                 render={({field}) => (
                   <FormItem className="col-span-12 lg:col-span-2">
@@ -127,7 +127,7 @@ function ImagePage() {
                 )}
               />
              <FormField 
-                controle={form.control}
+                control={form.control}
                 name="resolution"
                 render={({field}) => (
                   <FormItem className="col-span-12 lg:col-span-2">
@@ -154,8 +154,8 @@ function ImagePage() {
                 )}
               />
               <Button className="col-span-12 lg:col-span-2
-               bg-[#006587]
-               hover:bg-[#006587] w-full"
+               bg-[#111827]
+               hover:bg-[#111827] w-full"
                disabled={isLoading}
                >
                 Generate
