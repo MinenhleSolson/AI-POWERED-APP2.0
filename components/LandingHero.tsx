@@ -33,7 +33,7 @@ export const LandingHero = () => {
       </div>
       <div>
         <Link href={isSignedIn ? "/dashboard" : "/sign-up"}>
-          <Button variant="premium" className="md:text-lg p-4 md:p-6 rounded-full font-semibold">
+          <Button className="md:text-lg p-4 md:p-6 rounded-full font-semibold bg-[#ff5e00] hover:text-[#ff5e00] hover:bg-white">
             Start Generating For Free
           </Button>
         </Link>
